@@ -64,6 +64,27 @@ namespace TextMeshProTagGen
                 return value;
             }
         }
+        public static string Alpha(string alphaCode, string afterAlphaCode, string value)
+        {
+            if (alphaCode[0] == '#')
+            {
+                if (afterAlphaCode[0] == '#')
+                {
+                    value = "<alpha=" + alphaCode + ">" + value + "<alpha=" + afterAlphaCode + ">";
+                    return value;
+                }
+                else
+                {
+                    Debug.LogError("TagError");
+                    return value;
+                }
+            }
+            else
+            {
+                Debug.LogError("TagError");
+                return value;
+            }
+        }
 
         public static string Bold(string value)
         {
