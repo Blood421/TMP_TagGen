@@ -193,21 +193,13 @@ namespace TextMeshProTagGen
                     return value;
             }
         }
-        public static string Mark(string colorCode,string alphaCode, string value)
+        public static string Mark(string colorCode, string value)
         {
             Color checkColor;
             if (ColorUtility.TryParseHtmlString(colorCode, out checkColor))
             {
-                if (alphaCode[0] == '#')
-                {
-                    value = "<mark=" + colorCode + alphaCode[1] + alphaCode[2] + ">" + value + "</mark>";
-                    return value;
-                }
-                else
-                {
-                    Debug.LogError("TagError");
-                    return value;
-                }
+                value = "<mark=" + colorCode + ">" + value + "</mark>";
+                return value;
             }
             else
             {
@@ -265,7 +257,12 @@ namespace TextMeshProTagGen
         }
         public static string Space(float space, string value)
         {
-            value = "<space=" + space.ToString() + "em>" + value + "</space>";
+            value = "<space=" + space.ToString() + "em>" + value + "<space=0>";
+            return value;
+        }
+        public static string Space(float space, float afterSpace, string value)
+        {
+            value = "<space=" + space.ToString() + "em>" + value + "<space=" + afterSpace.ToString() + "em>";
             return value;
         }
         public static string SpriteNum(int num)
@@ -274,22 +271,15 @@ namespace TextMeshProTagGen
             value = "<sprite=" + num.ToString() + ">";
             return value;
         }
-        public static string SpriteNum(int num,string colorCode,string alphaCode)
+        public static string SpriteNum(int num,string colorCode)
         {
             string value = "";
             Color checkColor;
             if (ColorUtility.TryParseHtmlString(colorCode, out checkColor))
             {
-                if (alphaCode[0] == '#')
-                {
-                    value = "<sprite=" + num.ToString() + " color="+ colorCode + alphaCode[1] + alphaCode[2] + ">";
-                    return value;
-                }
-                else
-                {
-                    Debug.LogError("TagError");
-                    return value;
-                }
+
+                value = "<sprite=" + num.ToString() + " color=" + colorCode + ">";
+                return value;
             }
             else
             {
@@ -303,22 +293,15 @@ namespace TextMeshProTagGen
             value = "<sprite index=" + index.ToString() + ">";
             return value;
         }
-        public static string SpriteIndex(int index, string colorCode, string alphaCode)
+        public static string SpriteIndex(int index, string colorCode)
         {
             string value = "";
             Color checkColor;
             if (ColorUtility.TryParseHtmlString(colorCode, out checkColor))
             {
-                if (alphaCode[0] == '#')
-                {
-                    value = "<sprite index=" + index.ToString() + " color=" + colorCode + alphaCode[1] + alphaCode[2] + ">";
-                    return value;
-                }
-                else
-                {
-                    Debug.LogError("TagError");
-                    return value;
-                }
+
+                value = "<sprite index=" + index.ToString() + " color=" + colorCode + ">";
+                return value;
             }
             else
             {
@@ -330,25 +313,17 @@ namespace TextMeshProTagGen
         public static string SpriteName(string name)
         {
             string value = "";
-            value = "<sprite name=" + name + ">";
+            value = "<sprite name=\"" + name + "\">";
             return value;
         }
-        public static string SpriteName(string name, string colorCode, string alphaCode)
+        public static string SpriteName(string name, string colorCode)
         {
             string value = "";
             Color checkColor;
             if (ColorUtility.TryParseHtmlString(colorCode, out checkColor))
             {
-                if (alphaCode[0] == '#')
-                {
-                    value = "<sprite name=" + name + " color=" + colorCode + alphaCode[1] + alphaCode[2] + ">";
-                    return value;
-                }
-                else
-                {
-                    Debug.LogError("TagError");
-                    return value;
-                }
+                value = "<sprite name=\"" + name + "\" color=" + colorCode + ">";
+                return value;
             }
             else
             {
